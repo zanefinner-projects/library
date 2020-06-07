@@ -1,12 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"routes"
-	"index"
+	"github.com/zanefinner-projects/library/index"
+	"github.com/gorilla/mux"
+	"net/http"
 )
 
 func main() {
-	fmt.Println("Hi")
-	routes.CreateRoutes();
+	r := mux.NewRouter()
+	r.HandleFunc("/", index.Handler)
+	http.ListenAndServe(":8080", r)
 }
